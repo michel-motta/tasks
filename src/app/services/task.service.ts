@@ -11,8 +11,11 @@ export class TaskService {
     return this.tasks;
   }
 
-  public addTask() {
-
+  public addTask(value: string, date: string) {
+    date = date.replace('-', '/');
+    let task: Task = { value: value, date: new Date(date), done: false };
+    this.tasks.push(task);
+    console.log(this.tasks);
   }
 
   public deleteTask() {
