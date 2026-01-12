@@ -119,7 +119,7 @@ export class HomePage {
           type: 'date',
           min: '2026-01-01',
           max: '2099-12-31',
-          value: task.date.getFullYear() + '-' + ((task.date.getMonth() + 1) < 10 ? "0" + (task.date.getMonth() + 1) : (task.date.getMonth() + 1)) + '-' + ((task.date.getDay() + 1) < 10 ? "0" + task.date.getDay() : task.date.getDay()),
+          value: task.date.getFullYear() + '-' + ((task.date.getMonth() + 1) < 10 ? "0" + (task.date.getMonth() + 1) : (task.date.getMonth() + 1)) + '-' + ((task.date.getDate() + 1) < 10 ? "0" + task.date.getDate() : task.date.getDate()),
         }
       ],
     });
