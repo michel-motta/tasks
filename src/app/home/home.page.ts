@@ -10,6 +10,8 @@ import { TaskService } from '../services/task.service';
 })
 export class HomePage {
 
+  type: string = 'pending';
+
   constructor(private alertController: AlertController,
     public taskService: TaskService,
     public toastController: ToastController
