@@ -63,7 +63,7 @@ export class HomePage {
     toast.present();
   }
 
-   async presentAlertPromptDelete(index: number) {
+  async presentAlertPromptDelete(index: number) {
     const alert = await this.alertController.create({
       header: 'Excluir tarefa',
       message: 'Deseja realmente excluir a tarefa?',
@@ -75,6 +75,47 @@ export class HomePage {
         {
           text: 'Excluir',
           handler: () => this.taskService.deleteTask(index)
+        }
+      ],
+    });
+
+    await alert.present();
+  }
+
+  async presentAlertPromptUpdate(index: number, task: any) {
+    const alert = await this.alertController.create({
+      header: 'Atualizar tarefa',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+        },
+        {
+          text: 'Atualizar',
+          handler: (alertData) => {
+            if (alertData.task !== '') {
+              this.taskService.updateTask(index, alertData.task, alertData.date);
+            } else {
+              this.presentToast();
+              this.presentAlertPromptAdd();
+            }
+          }
+        }
+      ],
+      inputs: [
+        {
+          name: 'task',
+          id: 'paragraph',
+          type: 'textarea',
+          placeholder: 'Tarefa',
+          value: task.value
+        },
+        {
+          name: 'date',
+          type: 'date',
+          min: '2026-01-01',
+          max: '2099-12-31',
+          value: task.date.getFullYear() + '-' + ((task.date.getMonth() + 1) < 10 ? "0" + (task.date.getMonth() + 1) : (task.date.getMonth() + 1)) + '-' + ((task.date.getDay() + 1) < 10 ? "0" + task.date.getDay() : task.date.getDay()),
         }
       ],
     });
